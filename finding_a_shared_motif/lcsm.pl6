@@ -38,11 +38,11 @@ my $motif_length = 0;
 my $longest_motif = "";
 
 for 0..($shortest_seq.chars - $longest_motif.chars) -> $i {
-    say $i;
     for ($longest_motif.chars)..($shortest_seq.chars - $i) -> $j {
         my $substring = $shortest_seq.substr($i, $j);
         my $vote = @seqs.map({ $_.contains($substring) ?? 1 !! last }).sum;
 #        my $vote = @seqs.map({ $_ !~~ /$substring/ ?? (last) !! 1 }).sum;
+#        my $vote = @seqs.map({defined index($_, $substring) ?? 1 !! last }).sum;
         if ($vote == @seqs.elems) {
             $longest_motif = $substring if $substring.chars > $longest_motif.chars;
         }
