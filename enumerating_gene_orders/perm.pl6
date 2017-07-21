@@ -19,10 +19,17 @@ multi MAIN(Bool :$man!)
 Enumerating Gene Orders
 L<http://rosalind.info/problems/perm/>
 
-=input 
-3
+=head1 Example Input and Output
 
-=output 
+=head2 Input
+
+=begin code
+3
+=end code
+
+=head2 Output
+
+=begin code
 6
 1 2 3
 1 3 2
@@ -30,4 +37,6 @@ L<http://rosalind.info/problems/perm/>
 2 3 1
 3 1 2
 3 2 1
+=end code
 =end pod
+

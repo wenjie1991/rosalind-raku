@@ -19,9 +19,18 @@ multi MAIN(Bool :$man!)
 Counting DNA Nucleotides
 L<http://rosalind.info/problems/dna/>
 
-=input 
-AGCTTTTCATTCTGACTGCAACGGGCAATATGTCTCTGTGTGGATTAAAAAAAGAGTGTCTGATAGCAGC
+=head1 Example Input and Output
 
-=output 
+=head2 Input
+
+=begin code
+AGCTTTTCATTCTGACTGCAACGGGCAATATGTCTCTGTGTGGATTAAAAAAAGAGTGTCTGATAGCAGC
+=end code
+
+=head2 Output
+
+=begin code
 20 12 17 21
+=end code
 =end pod
+

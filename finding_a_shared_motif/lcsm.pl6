@@ -58,14 +58,23 @@ multi MAIN(Bool :$man!)
 Finding a Shared Motif
 L<http://rosalind.info/problems/lcsm/>
 
-=input 
+=head1 Example Input and Output
+
+=head2 Input
+
+=begin code
 >Rosalind_1
 GATTACA
 >Rosalind_2
 TAGACCA
 >Rosalind_3
 ATACA
+=end code
 
-=output 
+=head2 Output
+
+=begin code
 AC
+=end code
 =end pod
+

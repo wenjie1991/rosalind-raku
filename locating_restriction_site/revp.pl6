@@ -54,11 +54,18 @@ multi MAIN(Bool :$man!)
 Locating Restriction Sites
 L<http://rosalind.info/problems/revp/>
 
-=input 
+=head1 Example Input and Output
+
+=head2 Input
+
+=begin code
 >Rosalind_24
 TCAATGCATGCGGGTCTATATGCAT
+=end code
 
-=output 
+=head2 Output
+
+=begin code
 4 6
 5 4
 6 6
@@ -67,4 +74,6 @@ TCAATGCATGCGGGTCTATATGCAT
 18 4
 20 6
 21 4
+=end code
 =end pod
+

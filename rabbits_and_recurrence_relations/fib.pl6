@@ -20,9 +20,18 @@ multi MAIN(Bool :$man!)
 Rabbits and Recurrence Relations
 L<http://rosalind.info/problems/fib/>
 
-=input 
-5 3
+=head1 Example Input and Output
 
-=output 
+=head2 Input
+
+=begin code
+5 3
+=end code
+
+=head2 Output
+
+=begin code
 19
+=end code
 =end pod
+

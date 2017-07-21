@@ -1,0 +1,26 @@
+Description
+===========
+
+Computing GC Content [http://rosalind.info/problems/gc/](http://rosalind.info/problems/gc/)
+
+Example Input and Output
+========================
+
+Input
+-----
+
+    >Rosalind_6404
+    CCTGCGGAAGATCGGCACTAGAATAGCCAGAACCGTTTCTCTGAGGCTTCCGGCCTTCCC
+    TCCCACTAATAATTCTGAGG
+    >Rosalind_5959
+    CCATCGGTAGCGCATCCTTAGTCCAATTAAGTCCCTATCCAGGCGCTCCGCCGAAGGTCT
+    ATATCCATTTGTCAGCAGACACGC
+    >Rosalind_0808
+    CCACCCTCGTGGTATGGCTAGGCATTCAGGAACCGGAGAACGCTTCAGACCAGCCCGGAC
+    TGGGAACCTGCGGGCAGTAGGTGGAAT
+
+Output
+------
+
+    Rosalind_0808
+    60.919540

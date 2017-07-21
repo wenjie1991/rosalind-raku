@@ -81,7 +81,11 @@ multi MAIN(Bool :$man!)
 Consensus and Profile
 L<http://rosalind.info/problems/cons/>
 
-=input 
+=head1 Example Input and Output
+
+=head2 Input
+
+=begin code
 >Rosalind_1
 ATCCAGCT
 >Rosalind_2
@@ -96,11 +100,16 @@ TTGGAACT
 ATGCCATT
 >Rosalind_7
 ATGGCACT
+=end code
 
-=output 
+=head2 Output
+
+=begin code
 ATGCAACT
 A: 5 1 0 0 5 5 0 0
 C: 0 0 1 4 2 0 6 1
 G: 1 1 6 3 0 1 0 0
 T: 1 5 0 0 0 1 1 6
+=end code
 =end pod
+

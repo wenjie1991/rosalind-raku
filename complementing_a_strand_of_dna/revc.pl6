@@ -24,9 +24,18 @@ multi MAIN(Bool :$man!)
 Complementing a Strand of DNA
 L<http://rosalind.info/problems/revc/>
 
-=input 
-AAAACCCGGT
+=head1 Example Input and Output
 
-=output 
+=head2 Input
+
+=begin code
+AAAACCCGGT
+=end code
+
+=head2 Output
+
+=begin code
 ACCGGGTTTT
+=end code
 =end pod
+

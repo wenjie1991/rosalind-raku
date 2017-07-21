@@ -55,9 +55,18 @@ multi MAIN(Bool :$man!)
 Translating RNA into Protein
 L<http://rosalind.info/problems/prot/>
 
-=input 
-AUGGCCAUGGCGCCCAGAACUGAGAUCAAUAGUACCCGUAUUAACGGGUGA
+=head1 Example Input and Output
 
-=output 
+=head2 Input
+
+=begin code
+AUGGCCAUGGCGCCCAGAACUGAGAUCAAUAGUACCCGUAUUAACGGGUGA
+=end code
+
+=head2 Output
+
+=begin code
 MAMAPRTEINSTRING
+=end code
 =end pod
+

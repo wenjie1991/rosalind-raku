@@ -24,9 +24,18 @@ multi MAIN(Bool :$man!)
 Mendel's First Law
 L<http://rosalind.info/problems/iprb/>
 
-=input 
-2 2 2
+=head1 Example Input and Output
 
-=output 
+=head2 Input
+
+=begin code
+2 2 2
+=end code
+
+=head2 Output
+
+=begin code
 0.78333
+=end code
 =end pod
+

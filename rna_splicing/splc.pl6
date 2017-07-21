@@ -82,14 +82,23 @@ multi MAIN(Bool :$man!)
 RNA Splicing
 L<http://rosalind.info/problems/splc/>
 
-=input 
+=head1 Example Input and Output
+
+=head2 Input
+
+=begin code
 >Rosalind_10
 ATGGTCTACATAGCTGACAAACAGCACGTAGCAATCGGTCGAATCTCGAGAGGCATATGGTCACATGATCGGTCGAGCGTGTTTCAAAGTTTGCGCCTAG
 >Rosalind_12
 ATCGGTCGAA
 >Rosalind_15
 ATCGGTCGAGCGTGT
+=end code
 
-=output 
+=head2 Output
+
+=begin code
 MVYIADKQHVASREAYGHMFKVCA
+=end code
 =end pod
+

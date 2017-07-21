@@ -17,9 +17,18 @@ multi MAIN(Bool :$man!)
 Transcribing DNA into RNA
 L<http://rosalind.info/problems/rna/>
 
-=input 
-GATGGAACTTGACTACGTAAATT
+=head1 Example Input and Output
 
-=output 
+=head2 Input
+
+=begin code
+GATGGAACTTGACTACGTAAATT
+=end code
+
+=head2 Output
+
+=begin code
 GAUGGAACUUGACUACGUAAAUU
+=end code
 =end pod
+

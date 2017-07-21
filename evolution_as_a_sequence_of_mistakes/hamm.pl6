@@ -17,10 +17,19 @@ multi MAIN(Bool :$man!)
 Counting Point Mutations
 L<http://rosalind.info/problems/hamm/>
 
-=input 
+=head1 Example Input and Output
+
+=head2 Input
+
+=begin code
 GAGCCTACTAACGGGAT
 CATCGTAATGACGGCCT
+=end code
 
-=output 
+=head2 Output
+
+=begin code
 y
+=end code
 =end pod
+

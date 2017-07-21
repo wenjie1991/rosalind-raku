@@ -97,7 +97,11 @@ multi MAIN(Bool :$man!)
 Genome Assembly as Shortest Superstring
 L<http://rosalind.info/problems/long/>
 
-=input 
+=head1 Example Input and Output
+
+=head2 Input
+
+=begin code
 >Rosalind_56
 ATTAGACCTG
 >Rosalind_57
@@ -106,7 +110,12 @@ CCTGCCGGAA
 AGACCTGCCG
 >Rosalind_59
 GCCGGAATAC
+=end code
 
-=output 
+=head2 Output
+
+=begin code
 ATTAGACCTGCCGGAATAC
+=end code
 =end pod
+

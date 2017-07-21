@@ -94,13 +94,22 @@ multi MAIN(Bool :$man!)
 Open Reading Frames
 L<http://rosalind.info/problems/orf/>
 
-=input 
+=head1 Example Input and Output
+
+=head2 Input
+
+=begin code
 >Rosalind_99
 AGCCATGTAGCTAACTCAGGTTACATGGGGATGACCCCGCGACTTGGATTAGAGTCTCTTTTGGAATAAGCCTGAATGATCCGAGTAGCATCTCAG
+=end code
 
-=output 
+=head2 Output
+
+=begin code
 MLLGSFRLIPKETLIQVAGSSPCNLS
 M
 MGMTPRLGLESLLE
 MTPRLGLESLLE
+=end code
 =end pod
+

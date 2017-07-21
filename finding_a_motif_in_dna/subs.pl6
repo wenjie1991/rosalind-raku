@@ -18,11 +18,19 @@ multi MAIN(Bool :$man!)
 Finding a Motif in DNA
 L<http://rosalind.info/problems/subs/>
 
-=input 
+=head1 Example Input and Output
+
+=head2 Input
+
+=begin code
 GATATATGCATATACTT
 ATAT
+=end code
 
-=output 
+=head2 Output
+
+=begin code
 2 4 10
-
+=end code
 =end pod
+

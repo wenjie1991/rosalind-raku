@@ -43,7 +43,11 @@ multi MAIN(Bool :$man!)
 Overlap Graphs
 L<http://rosalind.info/problems/grph/>
 
-=input 
+=head1 Example Input and Output
+
+=head2 Input
+
+=begin code
 >Rosalind_0498
 AAATAAA
 >Rosalind_2391
@@ -54,10 +58,15 @@ TTTTCCC
 AAATCCC
 >Rosalind_5013
 GGGTGGG
+=end code
 
-=output 
+=head2 Output
+
+=begin code
 
 Rosalind_0498 Rosalind_2391
 Rosalind_0498 Rosalind_0442
 Rosalind_2391 Rosalind_2323
+=end code
 =end pod
+

@@ -53,7 +53,11 @@ multi MAIN(Bool :$man!) {
 Computing GC Content
 L<http://rosalind.info/problems/gc/>
 
-=input 
+=head1 Example Input and Output
+
+=head2 Input
+
+=begin code
 >Rosalind_6404
 CCTGCGGAAGATCGGCACTAGAATAGCCAGAACCGTTTCTCTGAGGCTTCCGGCCTTCCC
 TCCCACTAATAATTCTGAGG
@@ -63,8 +67,13 @@ ATATCCATTTGTCAGCAGACACGC
 >Rosalind_0808
 CCACCCTCGTGGTATGGCTAGGCATTCAGGAACCGGAGAACGCTTCAGACCAGCCCGGAC
 TGGGAACCTGCGGGCAGTAGGTGGAAT
+=end code
 
-=output
+=head2 Output
+
+=begin code
 Rosalind_0808
 60.919540
+=end code
 =end pod
+

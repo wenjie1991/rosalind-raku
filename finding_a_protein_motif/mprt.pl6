@@ -61,18 +61,26 @@ multi MAIN(Bool :$man!)
 Finding a Protein Motif
 L<http://rosalind.info/problems/mprt/>
 
-=input 
+=head1 Example Input and Output
+
+=head2 Input
+
+=begin code
 A2Z669
 B5ZC00
 P07204_TRBM_HUMAN
 P20840_SAG1_YEAST
+=end code
 
-=output 
+=head2 Output
+
+=begin code
 B5ZC00
 85 118 142 306 395
 P07204_TRBM_HUMAN
 47 115 116 382 409
 P20840_SAG1_YEAST
 79 109 135 248 306 348 364 402 485 501 614
-
+=end code
 =end pod
+
