@@ -1,10 +1,5 @@
 #!/usr/bin/env perl6
 
-#my $fasta = $*IN.slurp;
-my $fasta = Q:to/END/;
->Rosalind_99
-AGCCATGTAGCTAACTCAGGTTACATGGGGATGACCCCGCGACTTGGATTAGAGTCTCTTTTGGAATAAGCCTGAATGATCCGAGTAGCATCTCAG
-END
 
 grammar FASTA::Grammar {
     token TOP { <record>+ }
@@ -27,16 +22,19 @@ class FASTA::Actions {
     }
 }
 
-my @seqs = FASTA::Grammar.parse($fasta, actions => FASTA::Actions).made.map({$_<sequence>});
-my $dna = @seqs[0];
+multi MAIN() {
+    my $fasta = $*IN.slurp;
+    my @seqs = FASTA::Grammar.parse($fasta, actions => FASTA::Actions).made.map({$_<sequence>});
+    my $dna = @seqs[0];
 
-my $rna-f = $dna.subst("T", "U", :g);
-my $rna-r = revc($dna).subst("T", "U", :g);
+    my $rna-f = $dna.subst("T", "U", :g);
+    my $rna-r = revc($dna).subst("T", "U", :g);
 
-my @peptides = (find_orf($rna-f), find_orf($rna-r)).flat;
-@peptides = @peptides.map({$_ if $_ !~~ /\-$/});
+    my @peptides = (find_orf($rna-f), find_orf($rna-r)).flat;
+    @peptides = @peptides.map({$_ if $_ !~~ /\-$/});
 
-say @peptides.unique.join("\n");
+    say @peptides.unique.join("\n");
+}
 
 
 sub find_orf(Str $rna) {
@@ -84,3 +82,25 @@ sub revc($dna is copy){
     ($dna ~~ tr/TCGA/AGCT/).join;
 }
 
+multi MAIN(Bool :$man!)
+{
+    run $*EXECUTABLE, '--doc', $*PROGRAM;
+}
+
+=begin pod
+=head1 Description
+
+=para
+Open Reading Frames
+L<http://rosalind.info/problems/orf/>
+
+=input 
+>Rosalind_99
+AGCCATGTAGCTAACTCAGGTTACATGGGGATGACCCCGCGACTTGGATTAGAGTCTCTTTTGGAATAAGCCTGAATGATCCGAGTAGCATCTCAG
+
+=output 
+MLLGSFRLIPKETLIQVAGSSPCNLS
+M
+MGMTPRLGLESLLE
+MTPRLGLESLLE
+=end pod

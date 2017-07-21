@@ -1,14 +1,6 @@
 #!/usr/bin/env perl6
 
-#my $fasta = q:to/END/;
-#>Rosalind_1
-#GATTACA
-#>Rosalind_2
-#TAGACCA
-#>Rosalind_3
-#ATACA
-#END
-my $fasta = $*IN.slurp;
+
 
 grammar FASTA::Grammar::DNA {
     token TOP { <record>+ }
@@ -31,22 +23,49 @@ class FASTA::Actions {
     }
 }
 
-my @seqs = FASTA::Grammar::DNA.parse($fasta, actions => FASTA::Actions).made.map({$_<sequence>});
+multi MAIN() {
+    my $fasta = $*IN.slurp;
+    my @seqs = FASTA::Grammar::DNA.parse($fasta, actions => FASTA::Actions).made.map({$_<sequence>});
 
-my $shortest_seq = @seqs[@seqs.map({$_.chars}).minpairs[0].keys[0]];
-my $motif_length = 0;
-my $longest_motif = "";
+    my $shortest_seq = @seqs[@seqs.map({$_.chars}).minpairs[0].keys[0]];
+    my $motif_length = 0;
+    my $longest_motif = "";
 
-for 0..($shortest_seq.chars - $longest_motif.chars) -> $i {
-    for ($longest_motif.chars)..($shortest_seq.chars - $i) -> $j {
-        my $substring = $shortest_seq.substr($i, $j);
-        my $vote = @seqs.map({ $_.contains($substring) ?? 1 !! last }).sum;
+    for 0..($shortest_seq.chars - $longest_motif.chars) -> $i {
+        for ($longest_motif.chars)..($shortest_seq.chars - $i) -> $j {
+            my $substring = $shortest_seq.substr($i, $j);
+            my $vote = @seqs.map({ $_.contains($substring) ?? 1 !! last }).sum;
 #        my $vote = @seqs.map({ $_ !~~ /$substring/ ?? (last) !! 1 }).sum;
 #        my $vote = @seqs.map({defined index($_, $substring) ?? 1 !! last }).sum;
-        if ($vote == @seqs.elems) {
-            $longest_motif = $substring if $substring.chars > $longest_motif.chars;
+            if ($vote == @seqs.elems) {
+                $longest_motif = $substring if $substring.chars > $longest_motif.chars;
+            }
         }
     }
+
+    say $longest_motif;
 }
 
-say $longest_motif;
+multi MAIN(Bool :$man!)
+{
+    run $*EXECUTABLE, '--doc', $*PROGRAM;
+}
+
+=begin pod
+=head1 Description
+
+=para
+Finding a Shared Motif
+L<http://rosalind.info/problems/lcsm/>
+
+=input 
+>Rosalind_1
+GATTACA
+>Rosalind_2
+TAGACCA
+>Rosalind_3
+ATACA
+
+=output 
+AC
+=end pod

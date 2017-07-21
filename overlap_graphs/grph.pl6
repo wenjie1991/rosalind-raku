@@ -1,19 +1,5 @@
 #!/usr/bin/env perl6
 
-#my $fasta = q:to/END/;
-#>Rosalind_0498
-#AAATAAA
-#>Rosalind_2391
-#AAATTTT
-#>Rosalind_2323
-#TTTTCCC
-#>Rosalind_0442
-#AAATCCC
-#>Rosalind_5013
-#GGGTGGG
-#END
-my $fasta = $*IN.slurp;
-
 grammar FASTA::Grammar::DNA {
     token TOP { <record>+ }
     token record { ">"<id><comment>?"\n"<sequence> }
@@ -35,9 +21,43 @@ class FASTA::Actions {
     }
 }
 
-my @seqs = FASTA::Grammar::DNA.parse($fasta, actions => FASTA::Actions).made;
+multi MAIN() {
+    my $fasta = $*IN.slurp;
+    my @seqs = FASTA::Grammar::DNA.parse($fasta, actions => FASTA::Actions).made;
 
-for (@seqs X @seqs).flat -> $a, $b {
-    next if $a === $b;
-    say [$a<id>, $b<id>].join(" ")  if $a<sequence>.substr(*-3) eq $b<sequence>.reverse.substr(0, 3)
+    for (@seqs X @seqs).flat -> $a, $b {
+        next if $a === $b;
+        say [$a<id>, $b<id>].join(" ")  if $a<sequence>.substr(*-3) eq $b<sequence>.reverse.substr(0, 3)
+    }
 }
+
+multi MAIN(Bool :$man!)
+{
+    run $*EXECUTABLE, '--doc', $*PROGRAM;
+}
+
+=begin pod
+=head1 Description
+
+=para
+Overlap Graphs
+L<http://rosalind.info/problems/grph/>
+
+=input 
+>Rosalind_0498
+AAATAAA
+>Rosalind_2391
+AAATTTT
+>Rosalind_2323
+TTTTCCC
+>Rosalind_0442
+AAATCCC
+>Rosalind_5013
+GGGTGGG
+
+=output 
+
+Rosalind_0498 Rosalind_2391
+Rosalind_0498 Rosalind_0442
+Rosalind_2391 Rosalind_2323
+=end pod

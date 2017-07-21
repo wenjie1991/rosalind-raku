@@ -1,7 +1,5 @@
 #!/usr/bin/env perl6
 
-my $fasta = $*IN.slurp;
-
 grammar FASTA::Grammar {
     token TOP { <record>+ }
     token record { ">"<id><comment>?"\n"<sequence> }
@@ -23,21 +21,50 @@ class FASTA::Actions {
     }
 }
 
-my @seqs = FASTA::Grammar.parse($fasta, actions => FASTA::Actions).made.map({$_<sequence>});
-my $dna = @seqs[0];
+multi MAIN() {
+    my $fasta = $*IN.slurp;
+    my @seqs = FASTA::Grammar.parse($fasta, actions => FASTA::Actions).made.map({$_<sequence>});
+    my $dna = @seqs[0];
 
+    sub revc($dna is copy){
+        $dna = $dna.flip;
+        ($dna ~~ tr/TCGA/AGCT/).join;
+    }
 
-sub revc($dna is copy){
-    $dna = $dna.flip;
-    ($dna ~~ tr/TCGA/AGCT/).join;
+    my @mer = 4,6...12;
+    for @mer -> $length {
+        (0..($dna.chars - $length)).map({
+            my $kmer = $dna.substr($_, $length);
+            if $kmer eq revc($kmer) {
+                say [$_ + 1, $length].join(" ");
+            }
+        });
+    }
 }
 
-my @mer = 4,6...12;
-for @mer -> $length {
-    (0..($dna.chars - $length)).map({
-        my $kmer = $dna.substr($_, $length);
-        if $kmer eq revc($kmer) {
-            say [$_ + 1, $length].join(" ");
-        }
-    });
+multi MAIN(Bool :$man!)
+{
+    run $*EXECUTABLE, '--doc', $*PROGRAM;
 }
+
+=begin pod
+=head1 Description
+
+=para
+Locating Restriction Sites
+L<http://rosalind.info/problems/revp/>
+
+=input 
+>Rosalind_24
+TCAATGCATGCGGGTCTATATGCAT
+
+=output 
+4 6
+5 4
+6 6
+7 4
+17 4
+18 4
+20 6
+21 4
+=end pod

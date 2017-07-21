@@ -1,22 +1,5 @@
 #!/usr/bin/env perl6
 
-#my $fasta = q:to/END/;
-#>Rosalind_1
-#ATCCAGCT
-#>Rosalind_2
-#GGGCAACT
-#>Rosalind_3
-#ATGGATCT
-#>Rosalind_4
-#AAGCAACC
-#>Rosalind_5
-#TTGGAACT
-#>Rosalind_6
-#ATGCCATT
-#>Rosalind_7
-#ATGGCACT
-#END
-my $fasta = $*IN.slurp;
 
 grammar FASTA::Grammar::DNA {
     token TOP { <record>+ }
@@ -39,18 +22,21 @@ class FASTA::Actions {
     }
 }
 
-my @seqs = FASTA::Grammar::DNA.parse($fasta, actions => FASTA::Actions).made;
+multi  MAIN() {
+    my $fasta = $*IN.slurp;
+    my @seqs = FASTA::Grammar::DNA.parse($fasta, actions => FASTA::Actions).made;
 
-my $n = @seqs[0]<sequence>.chars;
-my %matrix = <A C G T>.map({$_ => [0 xx $n]});
+    my $n = @seqs[0]<sequence>.chars;
+    my %matrix = <A C G T>.map({$_ => [0 xx $n]});
 
-for @seqs -> $seq {
-    %matrix = add_profile_matrix($seq<sequence>, %matrix);
+    for @seqs -> $seq {
+        %matrix = add_profile_matrix($seq<sequence>, %matrix);
+    }
+
+    ## Output:
+    say extract_consensus(%matrix).join;
+    %matrix.map({say [$_.key~":", $_.value].join(" ")});
 }
-
-## Output:
-say extract_consensus(%matrix).join;
-%matrix.map({say [$_.key~":", $_.value].join(" ")});
 
 
 ## Subs
@@ -82,3 +68,39 @@ sub add_profile_matrix($seq, %matrix is copy) {
 }
 
 
+
+multi MAIN(Bool :$man!)
+{
+    run $*EXECUTABLE, '--doc', $*PROGRAM;
+}
+
+=begin pod
+=head1 Description
+
+=para
+Consensus and Profile
+L<http://rosalind.info/problems/cons/>
+
+=input 
+>Rosalind_1
+ATCCAGCT
+>Rosalind_2
+GGGCAACT
+>Rosalind_3
+ATGGATCT
+>Rosalind_4
+AAGCAACC
+>Rosalind_5
+TTGGAACT
+>Rosalind_6
+ATGCCATT
+>Rosalind_7
+ATGGCACT
+
+=output 
+ATGCAACT
+A: 5 1 0 0 5 5 0 0
+C: 0 0 1 4 2 0 6 1
+G: 1 1 6 3 0 1 0 0
+T: 1 5 0 0 0 1 1 6
+=end pod

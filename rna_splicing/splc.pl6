@@ -1,15 +1,5 @@
 #!/usr/bin/env perl6
 
-#my $fasta = Q:to/END/;
-#>Rosalind_10
-#ATGGTCTACATAGCTGACAAACAGCACGTAGCAATCGGTCGAATCTCGAGAGGCATATGGTCACATGATCGGTCGAGCGTGTTTCAAAGTTTGCGCCTAG
-#>Rosalind_12
-#ATCGGTCGAA
-#>Rosalind_15
-#ATCGGTCGAGCGTGT
-#END
-
-my $fasta = $*IN.slurp;
 
 grammar FASTA::Grammar {
     token TOP { <record>+ }
@@ -32,13 +22,18 @@ class FASTA::Actions {
     }
 }
 
-my @seqs = FASTA::Grammar.parse($fasta, actions => FASTA::Actions).made.map({$_<sequence>});
 
-for 1..^@seqs.elems -> $i {
-    @seqs[0].=subst(@seqs[$i], "");
+multi MAIN() {
+    my $fasta = $*IN.slurp;
+    my @seqs = FASTA::Grammar.parse($fasta, actions => FASTA::Actions).made.map({$_<sequence>});
+
+    for 1..^@seqs.elems -> $i {
+        @seqs[0].=subst(@seqs[$i], "");
+    }
+
+    my $rna = @seqs[0].subst("T", "U", :g);
+    say transcript($rna);
 }
-
-my $rna = @seqs[0].subst("T", "U", :g);
 
 my $rna_codon_table = q:to/END/;
 UUU F      CUU L      AUU I      GUU V
@@ -58,6 +53,7 @@ UGC C      CGC R      AGC S      GGC G
 UGA Stop   CGA R      AGA R      GGA G
 UGG W      CGG R      AGG R      GGG G 
 END
+
 my %rna_codon_table = $rna_codon_table.words.hash;
 
 sub transcript($rna) {
@@ -74,4 +70,26 @@ sub transcript($rna) {
     return $peptides ~ "-";
 }
 
-say transcript($rna);
+multi MAIN(Bool :$man!)
+{
+    run $*EXECUTABLE, '--doc', $*PROGRAM;
+}
+
+=begin pod
+=head1 Description
+
+=para
+RNA Splicing
+L<http://rosalind.info/problems/splc/>
+
+=input 
+>Rosalind_10
+ATGGTCTACATAGCTGACAAACAGCACGTAGCAATCGGTCGAATCTCGAGAGGCATATGGTCACATGATCGGTCGAGCGTGTTTCAAAGTTTGCGCCTAG
+>Rosalind_12
+ATCGGTCGAA
+>Rosalind_15
+ATCGGTCGAGCGTGT
+
+=output 
+MVYIADKQHVASREAYGHMFKVCA
+=end pod
